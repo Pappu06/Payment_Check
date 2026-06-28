@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:5000/api/payment",
+    baseURL: "https://yummy-food-order.onrender.com/api/payment",
 });
 
 export const createOrder = async (amount) => {
