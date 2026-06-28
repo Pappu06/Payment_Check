@@ -18,6 +18,18 @@ const paymentSchema = new mongoose.Schema(
       type: String,
       default: "Pending",
     },
+
+    items: mongoose.Schema.Types.Mixed,
+
+    phone: String,
+
+    address: String,
+
+    deliveryFee: Number,
+
+    tax: Number,
+
+    subtotal: Number,
   },
   {
     timestamps: true,
