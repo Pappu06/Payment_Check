@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../App";
+import { useCart } from "../context/CartContext";
 
 function FoodCard({ item }) {
   const { addToCart } = useCart();
@@ -10,7 +10,7 @@ function FoodCard({ item }) {
       {/* Favorite Button */}
       <button
         onClick={() => setLiked(!liked)}
-        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/90 border border-neutral-100 hover:border-red-150 hover:bg-red-50 text-neutral-400 hover:text-red-500 shadow-sm transition-all duration-200 cursor-pointer"
+        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/90 border border-neutral-100 hover:border-red-200 hover:bg-red-50 text-neutral-400 hover:text-red-500 shadow-sm transition-all duration-200 cursor-pointer"
       >
         <svg
           className={`w-5 h-5 ${liked ? "fill-red-500 stroke-red-500" : ""}`}

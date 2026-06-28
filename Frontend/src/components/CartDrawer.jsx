@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../App";
+import { useCart } from "../context/CartContext";
 import { createOrder, verifyPayment } from "../services/paymentService";
 import { useNavigate } from "react-router-dom";
 

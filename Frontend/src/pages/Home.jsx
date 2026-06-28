@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../App";
+import { useCart } from "../context/CartContext";
 import Navbar from "../components/Navbar";
 import FoodCard from "../components/FoodCard";
 import CartDrawer from "../components/CartDrawer";
@@ -141,14 +141,14 @@ function Home() {
         {/* ================= HERO SECTION ================= */}
         <section id="hero" className="grid md:grid-cols-12 gap-12 items-center py-8 md:py-16">
           <div className="md:col-span-7 flex flex-col justify-center text-left">
-            <h1 className="font-display font-extrabold text-5xl md:text-6xl text-neutral-900 leading-[1.1] mb-6">
+            <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl text-neutral-900 leading-[1.1] mb-6">
               Good food, <br />
               good <span className="text-orange-500 font-serif italic tracking-wide font-black">mood</span>
             </h1>
             <p className="text-neutral-500 text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
               Discover delicious meals from top restaurants delivered to your doorstep. Satisfy your cravings in a few taps.
             </p>
-            
+
             <div className="flex flex-wrap gap-4 items-center mb-12">
               <button
                 onClick={() => setCartOpen(true)}
@@ -161,7 +161,7 @@ function Home() {
                   </svg>
                 </span>
               </button>
-              
+
               <a
                 href="#menu"
                 className="px-7 py-4 bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-700 hover:text-neutral-900 font-bold rounded-full shadow-sm transition-all duration-300 flex items-center gap-2 cursor-pointer"
@@ -203,7 +203,7 @@ function Home() {
           <div className="md:col-span-5 flex justify-center relative">
             {/* Background pasta accent ring */}
             <div className="absolute w-[110%] h-[110%] bg-amber-400/10 rounded-full blur-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-pulse"></div>
-            
+
             {/* Main Plate */}
             <div className="relative max-w-[380px] md:max-w-full drop-shadow-2xl z-10 transition-transform duration-500 hover:rotate-6">
               <img
@@ -211,7 +211,7 @@ function Home() {
                 alt="Delicious Pasta"
                 className="w-full h-auto object-contain rounded-full"
               />
-              
+
               {/* Floating Leaf / Tomato Elements */}
               <span className="absolute top-[10%] left-[5%] text-3xl animate-bounce pointer-events-none filter drop-shadow">🍃</span>
               <span className="absolute bottom-[20%] left-[-5%] text-4xl animate-bounce pointer-events-none filter drop-shadow [animation-delay:0.7s]">🍅</span>
@@ -257,20 +257,17 @@ function Home() {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex flex-col items-center gap-3 py-5 px-6 rounded-3xl border min-w-[100px] transition-all duration-300 cursor-pointer ${
-                  selectedCategory === category.id
+                className={`flex flex-col items-center gap-3 py-5 px-6 rounded-3xl border min-w-[100px] transition-all duration-300 cursor-pointer ${selectedCategory === category.id
                     ? "bg-white border-amber-400 shadow-md shadow-amber-400/10 -translate-y-1"
                     : "bg-white border-neutral-100 hover:border-neutral-200 hover:-translate-y-0.5"
-                }`}
+                  }`}
               >
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center text-3xl transition duration-300 ${
-                  selectedCategory === category.id ? "bg-amber-400/20" : "bg-neutral-50"
-                }`}>
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center text-3xl transition duration-300 ${selectedCategory === category.id ? "bg-amber-400/20" : "bg-neutral-50"
+                  }`}>
                   {category.icon}
                 </div>
-                <span className={`text-xs font-bold transition duration-200 ${
-                  selectedCategory === category.id ? "text-neutral-900" : "text-neutral-500"
-                }`}>
+                <span className={`text-xs font-bold transition duration-200 ${selectedCategory === category.id ? "text-neutral-900" : "text-neutral-500"
+                  }`}>
                   {category.name}
                 </span>
               </button>
@@ -314,7 +311,7 @@ function Home() {
           <div className="bg-[#FFC529] rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-lg flex flex-col md:flex-row items-center justify-between gap-8">
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-[50%] h-full bg-white/5 skew-x-12 pointer-events-none"></div>
-            
+
             <div className="flex-1 relative z-10 text-center md:text-left">
               <span className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-wider text-amber-900 bg-white/40 px-3 py-1 rounded-full mb-4">
                 🏷️ Limited Time Offer
@@ -325,7 +322,7 @@ function Home() {
               </h2>
               <button
                 onClick={() => setCartOpen(true)}
-                className="px-8 py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white font-bold rounded-full shadow-lg transition-all duration-300 transform active:scale-95 cursor-pointer flex items-center gap-2"
+                className="px-8 py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white font-bold rounded-full shadow-lg transition-all duration-300 transform active:scale-95 cursor-pointer inline-flex items-center gap-2"
               >
                 <span>Order Now</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -386,7 +383,7 @@ function Home() {
             </button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((item, idx) => (
               <div key={idx} className="bg-white rounded-3xl p-8 border border-neutral-100 shadow-sm flex flex-col justify-between">
                 <div>
@@ -395,7 +392,7 @@ function Home() {
                     {item.text}
                   </p>
                 </div>
-                
+
                 <div className="flex items-center gap-3 border-t border-neutral-50 pt-4">
                   <img src={item.avatar} alt={item.name} className="w-10 h-10 rounded-full object-cover shadow-inner" />
                   <div>
@@ -423,7 +420,7 @@ function Home() {
               </h3>
               <p className="text-neutral-500 text-xs">No spam, cancel anytime.</p>
             </div>
-            
+
             <div className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
@@ -443,8 +440,8 @@ function Home() {
 
       {/* ================= FOOTER ================= */}
       <footer className="bg-neutral-900 text-neutral-400 pt-16 pb-8 mt-12 relative z-10">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-5 gap-8 mb-12">
-          <div className="md:col-span-2 space-y-4">
+        <div className="max-w-6xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+          <div className="sm:col-span-2 lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center">
                 <span className="font-display font-extrabold text-white text-xl">Y</span>
@@ -457,7 +454,7 @@ function Home() {
               We connect food lovers with the finest local culinary talents, ensuring freshly prepared and fast-delivered happiness.
             </p>
           </div>
-          
+
           <div>
             <h4 className="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Quick Links</h4>
             <ul className="space-y-2 text-xs">
@@ -467,7 +464,7 @@ function Home() {
               <li><a href="#testimonials" className="hover:text-white transition">Reviews</a></li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Support</h4>
             <ul className="space-y-2 text-xs">
@@ -481,9 +478,9 @@ function Home() {
           <div>
             <h4 className="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Contact Us</h4>
             <ul className="space-y-2 text-xs">
-              <li>📧 info@yummy.com</li>
-              <li>📞 +1 (555) 234-5678</li>
-              <li>📍 100 Culinary Blvd, NY</li>
+              <li>📧 [pappukumar.pk1106@gmail.com]</li>
+              <li>📞 +91 XXXXXXXXXX</li>
+              <li>📍 835103 Rmachi, Jharkhand, India</li>
             </ul>
           </div>
         </div>

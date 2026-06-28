@@ -1,7 +1,9 @@
-import { useCart } from "../App";
+import { useCart } from "../context/CartContext";
+import { useState } from "react";
 
 function Navbar() {
   const { cartCount, setCartOpen } = useCart();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-orange-100 py-4 shadow-sm transition-all duration-300">
@@ -44,8 +46,64 @@ function Navbar() {
               </span>
             )}
           </button>
+
+          {/* Hamburger Menu Toggle */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="p-2.5 rounded-xl border border-neutral-100 hover:border-orange-200 bg-neutral-50 hover:bg-orange-50 text-neutral-600 hover:text-orange-600 transition-all duration-200 cursor-pointer md:hidden"
+            aria-label="Toggle Menu"
+          >
+            {menuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-orange-50 bg-white/95 backdrop-blur-md px-6 py-4 space-y-2 shadow-inner">
+          <a
+            href="#hero"
+            onClick={() => setMenuOpen(false)}
+            className="block text-sm font-bold text-neutral-600 hover:text-orange-500 transition-colors py-2 border-b border-neutral-50"
+          >
+            Home
+          </a>
+          <a
+            href="#menu"
+            onClick={() => setMenuOpen(false)}
+            className="block text-sm font-bold text-neutral-600 hover:text-orange-500 transition-colors py-2 border-b border-neutral-50"
+          >
+            Menu
+          </a>
+          <a
+            href="#about"
+            onClick={() => setMenuOpen(false)}
+            className="block text-sm font-bold text-neutral-600 hover:text-orange-500 transition-colors py-2 border-b border-neutral-50"
+          >
+            About Us
+          </a>
+          <a
+            href="#testimonials"
+            onClick={() => setMenuOpen(false)}
+            className="block text-sm font-bold text-neutral-600 hover:text-orange-500 transition-colors py-2"
+          >
+            Reviews
+          </a>
+          <div className="pt-3 border-t border-neutral-100 sm:hidden">
+            <span className="inline-flex text-[10px] px-2.5 py-1 rounded-full font-bold bg-orange-50 text-orange-600 border border-orange-200 items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span> Sandbox Mode
+            </span>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
