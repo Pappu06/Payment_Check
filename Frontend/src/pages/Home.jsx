@@ -258,8 +258,8 @@ function Home() {
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
                 className={`flex flex-col items-center gap-3 py-5 px-6 rounded-3xl border min-w-[100px] transition-all duration-300 cursor-pointer ${selectedCategory === category.id
-                    ? "bg-white border-amber-400 shadow-md shadow-amber-400/10 -translate-y-1"
-                    : "bg-white border-neutral-100 hover:border-neutral-200 hover:-translate-y-0.5"
+                  ? "bg-white border-amber-400 shadow-md shadow-amber-400/10 -translate-y-1"
+                  : "bg-white border-neutral-100 hover:border-neutral-200 hover:-translate-y-0.5"
                   }`}
               >
                 <div className={`w-14 h-14 rounded-full flex items-center justify-center text-3xl transition duration-300 ${selectedCategory === category.id ? "bg-amber-400/20" : "bg-neutral-50"
@@ -480,7 +480,7 @@ function Home() {
             <ul className="space-y-2 text-xs">
               <li>📧 [pappukumar.pk1106@gmail.com]</li>
               <li>📞 +91 XXXXXXXXXX</li>
-              <li>📍 835103 Rmachi, Jharkhand, India</li>
+              <li>📍 835103 Ranchi, Jharkhand, India</li>
             </ul>
           </div>
         </div>
